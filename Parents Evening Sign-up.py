@@ -206,9 +206,4 @@ if choice == 3:
     if definitelySend.upper() == "Y":
         sendGo()
 
-
-# Region: Form Data Structures
-
-# Region End
-
 # Section End
