@@ -99,7 +99,7 @@ print("2. Retrieve Data and save to file")
 print("3. Send Go for payment")
 choice = int(input("Enter choice: "))
 
-if choice == 1:
+if choice == 1 or choice == 2:
     signupData = retrieveData()
 
     rows = []
@@ -145,55 +145,11 @@ if choice == 1:
                      person["no_lactose"],
                      person["dietary_reqs"]])
 
+if choice == 1:
     for row in rows:
         print(row)
 
 if choice == 2:
-    signupData = retrieveData()
-
-    rows = []
-
-    rows.append(["Group ID",
-                 "Group Creator",
-                 "Group Name",
-                 "Friday",
-                 "Saturday"])
-
-    for group in signupData["groups"]:
-        dateWanted = group["date_want"]
-        if dateWanted == 0:
-            fridayAvailable, saturdayAvailable = 1, 1
-        elif dateWanted == 1:
-            fridayAvailable, saturdayAvailable = 1, 0
-        elif dateWanted == 2:
-            fridayAvailable, saturdayAvailable = 0, 1
-
-        rows.append([group["group_id"],
-                     group["creator"],
-                     group["name"],
-                     fridayAvailable,
-                     saturdayAvailable])
-
-    rows.append(["Group ID",
-                 "Person ID",
-                 "Name",
-                 "Vegetarian",
-                 "Vegan",
-                 "Gluten Free",
-                 "No Lactose",
-                 "Other Dietary Reqs"])
-
-    for person in signupData["people"]:
-        rows.append([person["group"],
-                     person["person"],
-                     "{0} {1}".format(person["first_name"],
-                                      person["surname"]),
-                     person["vegetarian"],
-                     person["vegan"],
-                     person["gluten_free"],
-                     person["no_lactose"],
-                     person["dietary_reqs"]])
-
     with open(PATH + "Data.csv", "w") as file:
         writer = csv.writer(file, lineterminator="\n")
 
