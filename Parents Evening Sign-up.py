@@ -38,7 +38,7 @@ PATH = dirname(abspath(__file__)) + "\\"
 def retrieveData():
 
     response = requests.get(URL, headers=HEADERS,
-                            params={"groups": })
+                            params={"groups": ""})
 
     if response.status_code == 404:
         print("The API was not found, speak to the webmaster")
@@ -61,7 +61,7 @@ def retrieveData():
 def sendGo():
 
     response = requests.post(URL, headers=HEADERS,
-                             params={"GO": })
+                             params={"GO": ""})
 
     print(response.status_code)
 
@@ -110,8 +110,24 @@ if choice == 1 or choice == 2:
                  "Friday",
                  "Saturday"])
 
+    for key in signupData.keys():
+        print(key)
+
+    print()
+
+    for key in signupData["groups"][0].keys():
+        print(key)
+
+    print()
+
+    for key in signupData["people"][0].keys():
+        print(key)
+
+
     for group in signupData["groups"]:
         dateWanted = group["date_want"]
+        fridayAvailable = 0
+        saturdayAvailable = 0
         if dateWanted == 0:
             fridayAvailable, saturdayAvailable = 1, 1
         elif dateWanted == 1:
@@ -121,7 +137,7 @@ if choice == 1 or choice == 2:
 
         rows.append([group["group_id"],
                      group["creator"],
-                     group["name"],
+                     # group["name"],
                      fridayAvailable,
                      saturdayAvailable])
 
@@ -136,14 +152,16 @@ if choice == 1 or choice == 2:
 
     for person in signupData["people"]:
         rows.append([person["group"],
-                     person["person"],
-                     "{0} {1}".format(person["first_name"],
+                     # person["person"],
+                     "{0} {1}".format(person["first_names"],
                                       person["surname"]),
                      person["vegetarian"],
                      person["vegan"],
                      person["gluten_free"],
                      person["no_lactose"],
                      person["dietary_reqs"]])
+
+    # print(len(rows))
 
 if choice == 1:
     for row in rows:
