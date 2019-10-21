@@ -107,9 +107,12 @@ if choice == 1 or choice == 2:
     rows.append(["Group ID",
                  "Group Creator",
                  "Group Name",
-                 "Friday",
-                 "Saturday"])
+                 "Friday Can",
+                 "Saturday Can",
+                 "Friday Want",
+                 "Saturday Want"])
 
+    """
     for key in signupData.keys():
         print(key)
 
@@ -122,24 +125,36 @@ if choice == 1 or choice == 2:
 
     for key in signupData["people"][0].keys():
         print(key)
-
+    """
 
     for group in signupData["groups"]:
-        dateWanted = group["date_want"]
-        fridayAvailable = 0
-        saturdayAvailable = 0
-        if dateWanted == 0:
-            fridayAvailable, saturdayAvailable = 1, 1
-        elif dateWanted == 1:
-            fridayAvailable, saturdayAvailable = 1, 0
-        elif dateWanted == 2:
-            fridayAvailable, saturdayAvailable = 0, 1
+        dateWant = int(group["date_want"])
+        fridayWant = 0
+        saturdayWant = 0
+        if dateWant == 0:
+            fridayWant, saturdayWant = 1, 1
+        elif dateWant == 1:
+            fridayWant = 1
+        elif dateWant == 2:
+            saturdayWant = 1
+
+        dateCan = int(group["date_can"])
+        fridayCan = 0
+        saturdayCan = 0
+        if dateCan == 3:
+            fridayCan, saturdayCan = 1, 1
+        elif dateCan == 1:
+            fridayCan = 1
+        elif dateCan == 2:
+            saturdayCan = 1
 
         rows.append([group["group_id"],
                      group["creator"],
                      # group["name"],
-                     fridayAvailable,
-                     saturdayAvailable])
+                     fridayCan,
+                     saturdayCan,
+                     fridayWant,
+                     saturdayWant])
 
     rows.append(["Group ID",
                  "Person ID",
