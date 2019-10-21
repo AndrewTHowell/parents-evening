@@ -106,7 +106,6 @@ if choice == 1 or choice == 2:
 
     rows.append(["Group ID",
                  "Group Creator",
-                 "Group Name",
                  "Friday Can",
                  "Saturday Can",
                  "Friday Want",
@@ -150,7 +149,6 @@ if choice == 1 or choice == 2:
 
         rows.append([group["group_id"],
                      group["creator"],
-                     # group["name"],
                      fridayCan,
                      saturdayCan,
                      fridayWant,
@@ -167,7 +165,7 @@ if choice == 1 or choice == 2:
 
     for person in signupData["people"]:
         rows.append([person["group"],
-                     # person["person"],
+                     person["user_id"],
                      "{0} {1}".format(person["first_names"],
                                       person["surname"]),
                      person["vegetarian"],
