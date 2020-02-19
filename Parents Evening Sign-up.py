@@ -19,12 +19,6 @@ import json
 
 URL = "https://mildert.co.uk/resources/API/ParentEvent.php"
 
-HEADERS = {
-    "USER_ID": "4662",  # My personal ID
-    "API_KEY": ("HyL9Gepw0D6PiZMgWmUiYNskC2sK7+RwwsSuBq0Q0O8YQVAyGib+foaMnFk9"
-                "T7Uq3UFclu3XHQGVgH3i")  # Given API key
-}
-
 # Location of Folder containing ranking JSON file
 PATH = dirname(abspath(__file__)) + "\\"
 
